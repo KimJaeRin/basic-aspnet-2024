@@ -19,6 +19,7 @@
                 $(this).css('background-color', 'silver');
                 $(this).css('border-radius', '0px')
             }).on('click', function() {
+                $(this).css('background-color', 'silver');
                 $(this).css('border-radius', '50px');
             });
             // jQuery에는 js의 on을 빼고 이벤트를 구현할 수 있음.
@@ -27,7 +28,7 @@
             });
 
             // jQuery의 기능
-            $('#toggle').on('click',function(){
+            $('#toggle').on('click',function() {
                 // fadeToggle, hide, fadeout, slideToggle
                 $('.page').fadein('slow');
             });
@@ -40,9 +41,10 @@
                 width: 400,
                 opacity: 0.5, // 투명도
             }, 2000).animate({
-                width: 400,
+                width: 100,
                 opacity: 1,
             }, 2000);
+        });
     </script>
     <style>
         * { margin: 10px auto; }
@@ -56,6 +58,6 @@
         <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi pariatur nihil totam. Beatae blanditiis fuga officiis optio unde quam voluptatem quo, quos perferendis dignissimos alias, aperiam dolorem doloremque iste cumque nostrum at. Temporibus delectus praesentium laborum odio, qui quasi, nulla veritatis harum, inventore nemo aperiam corporis veniam eveniet impedit! Nemo.</p>
     </div>
-
+    <div id="box"></div>
 </body>
 </html>
