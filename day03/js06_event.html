@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>JS 이벤트</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+         //var buttonClick = function() {
+           // alert('Clicked');
+       // } 
+
+       window.onload = function(event){ 
+        var btnNormal= document.getElementById('btnNormal');
+
+        btnNormal.onclick = function(event) {
+            console.log(event);
+            alert('가장 일반적인 이벤트 처리방법')
+        }
+
+        var link = document.getElementById('link');
+        link.onclick = function() {
+            return false; // 이벤트 제거 true로 하면 창 이벤트 실행 됨
+        }
+    };
+</script>
+
+</head>
+<body>
+    <!-- 인라인 이벤트 or 함수호출 -->
+    <!-- <button onclick="buttonClick()">클릭</button> -->    
+    <button id="btnNormal" >클릭</button>
+    <a id="link" href="https:// www.naver.com" target="_blank">네이버로 가기</a>    
+</body>
+</html>

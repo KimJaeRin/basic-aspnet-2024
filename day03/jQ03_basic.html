@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>jQuery Basic3</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+       $(document).ready(function() {
+            // jQuery로 이벤트 적용하는 방법
+            $('#obj').css({
+                width: 100,
+                height: 100,
+                'background-color': 'yellow'
+            }). on('mouseover', function() {
+                $(this).css('background-color', 'blue');
+            }).on('mouseleave', function() {
+                $(this).css('background-color', 'silver');
+                $(this).css('border-radius', '0px')
+            }).on('click', function() {
+                $(this).css('border-radius', '50px');
+            });
+            // jQuery에는 js의 on을 빼고 이벤트를 구현할 수 있음.
+            $('#push').click(function() {
+                alert('Button Clicked');
+            });
+
+            // jQuery의 기능
+            $('#toggle').on('click',function(){
+                // fadeToggle, hide, fadeout, slideToggle
+                $('.page').fadein('slow');
+            });
+
+            $('#box').css({
+                width: 100,
+                height: 100,
+                'background-color': 'black'
+            }).animate({
+                width: 400,
+                opacity: 0.5, // 투명도
+            }, 2000).animate({
+                width: 400,
+                opacity: 1,
+            }, 2000);
+    </script>
+    <style>
+        * { margin: 10px auto; }
+    </style>
+</head>
+<body>
+    <div id="obj"></div>
+    <button id="push">클릭</button>
+    <button id="toggle">토글</button>
+    <div class="page">
+        <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi pariatur nihil totam. Beatae blanditiis fuga officiis optio unde quam voluptatem quo, quos perferendis dignissimos alias, aperiam dolorem doloremque iste cumque nostrum at. Temporibus delectus praesentium laborum odio, qui quasi, nulla veritatis harum, inventore nemo aperiam corporis veniam eveniet impedit! Nemo.</p>
+    </div>
+
+</body>
+</html>
