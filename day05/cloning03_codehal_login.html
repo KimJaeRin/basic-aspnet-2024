@@ -15,6 +15,12 @@
             font-family: "Ubuntu", sans-serif;            
         }
 
+        body {
+            width: 100%; 
+            overflow-x: hidden; 
+            overflow-y: hidden;
+        } 
+
         .header {
             position: fixed;
             top: 0; left: 0; width: 100%; padding: 30px 80px;
@@ -69,6 +75,18 @@
             user-select: none;
         }
 
+        .bg-slide.active .circle.small {
+            z-index: 12;
+        }
+
+        .bg-slide.active .circle { /*5개 이미지 영역에서 active가 되는것을 가장위로 */
+            z-index: 10;
+        }
+
+        .bg-slide.active .content-text{
+            z-index: 101;
+        }
+
         .bg-slide .circle.large,
         .circle-darktransp {
             clip-path: circle(50% at 50% 50%);
@@ -76,16 +94,43 @@
 
         .bg-slide .circle.small {
             clip-path: circle(30% at 50% 50%);
-            z-index: 12;
         }
 
         .bg-slide .circle img {
             object-fit: cover;
-            transform: rotate(0deg) scale(2);
+            transform: rotate(0deg) scale(4);
+            opacity: 0;
+            transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1),
+                        opacity 1s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .bg-slide.active .circle img {
+            transform: rotate(360deg) scale(2); /* active가 되면 화면 회전 */
+            opacity: 1;
+        }
+        .bg-slide.after-active .circle img {
+            transform: rotate(720deg) scale(4);
+            opacity: 0;
+        }
+
+        /* 한 슬라이드당 이미지 3개, 그중 bg클래스만 딜레이 */
+        .bg-slide.active .circle.bg img,
+        bg-slide.after-active .circle.bg img {
+        transition-delay: 0.5s;
+        }
+
+        bg-slide.active .circle.large.img,
+        bg-slide.after-active .circle.large img {
+        transition-delay: 0.5s;
+        }
+        bg-slide.active .circle.large.img,
+        bg-slide.after-active .circle.small img {
+        transition-delay: 0.2s;
         }
 
         .circle-darktransp {
             background-color: rgba(0, 0, 0, 0.1);
+            z-index: 11;
         }
 
         .bg-slide .content-text {
@@ -100,26 +145,44 @@
         .content-text .place h1,
         .content-text .country h2 {
             color: white;
-            text-transform: uppercase;   
+            text-transform: uppercase;  
+            line-height: 1; 
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.5;
+        }
+
+        .bg-slide.active .content-text .place h1,
+        .bg-slide.active .content-text .country h2 {
+            transform: translateY(0%);
+            opacity: 1; /* 투명도 없이 */
         }
 
         .content-text .place h1 {
             font-size: 60px;
             letter-spacing: 80px;
             margin-right: -80px;
-            background-color: salmon;
+            transform: translateY(100%);
+            /* background-color: salmon; */
         }
 
         .content-text .country h2 {
             font-size: 50px;
             letter-spacing: 30px;
             margin-right: -30px;
-            background-color: seagreen;
+            transform: translateY(-100%);
+            /* background-color: seagreen; */
         }
 
         .content-text .country {
             margin-top: 60px;
         }
+
+        .content-text .place,
+        .content-text .country {
+            /* background-color: cornflowerblue; */
+            overflow: hidden;
+        } 
 
         .line {
             position: absolute;
@@ -128,6 +191,31 @@
             width: 500px; height: 2px;
             background-color: white;
             z-index: 100;
+        }
+
+        .rotate-btn {
+            position: absolute;
+            bottom: 40px; right: 40px;
+            width: 60px; height: 60px;
+            background-color: #acacac;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;            
+        }
+        .rotate-btn.active {
+            transform: rotate(360deg);
+            pointer-events: none;
+            transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transition-delay: 0.1s;
+        }
+
+        .rotate-btn i {
+            font-size: 40px;
+            color: white;
         }
 
     </style>
@@ -154,7 +242,7 @@
     </div>
 
     <div class="container">
-        <div class="bg-slide">
+        <div class="bg-slide active">
             <div class="circle bg">
                 <img src="./images/img1.jpg">
             </div>
@@ -176,17 +264,130 @@
             </div>
         </div>
 
+        <div class="bg-slide ">
+            <div class="circle bg">
+                <img src="./images/img2.jpg">
+            </div>
+            <div class="circle large">
+                <img src="./images/img2.jpg">
+            </div>
+            <div class="circle small">
+                <img src="./images/img2.jpg">
+            </div>
+
+            <div class="content-text">
+                <div class="place">
+                    <h1>denali</h1>
+                </div>
+
+                <div class="country">
+                    <h2>USA</h2>
+                </div>
+            </div>
+        </div>   
+
+        <div class="bg-slide">
+            <div class="circle bg">
+                <img src="./images/img3.jpg">
+            </div>
+            <div class="circle large">
+                <img src="./images/img3.jpg">
+            </div>
+            <div class="circle small">
+                <img src="./images/img3.jpg">
+            </div>
+
+            <div class="content-text">
+                <div class="place">
+                    <h1>sahara</h1>
+                </div>
+
+                <div class="country">
+                    <h2>africa</h2>
+                </div>
+            </div>
+        </div>     
+
+        <div class="bg-slide">
+            <div class="circle bg">
+                <img src="./images/img4.jpg">
+            </div>
+            <div class="circle large">
+                <img src="./images/img4.jpg">
+            </div>
+            <div class="circle small">
+                <img src="./images/img4.jpg">
+            </div>
+
+            <div class="content-text">
+                <div class="place">
+                    <h1>sindoro</h1>
+                </div>
+
+                <div class="country">
+                    <h2>indonesia</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-slide">
+            <div class="circle bg">
+                <img src="./images/img5.jpg">
+            </div>
+            <div class="circle large">
+                <img src="./images/img5.jpg">
+            </div>
+            <div class="circle small">
+                <img src="./images/img5.jpg">
+            </div>
+
+            <div class="content-text">
+                <div class="place">
+                    <h1>marmolada</h1>
+                </div>
+
+                <div class="country">
+                    <h2>italy</h2>
+                </div>
+            </div>
+        </div>
+
+        
+
         <div class="circle-darktransp"></div>
 
         <span class="line"></span>
         
         <span class="rotate-btn">
-
+            <i class='bx bx-rotate-right'></i>
         </span>
 
     </div>
 
     <script>
+        /* 회전버튼 동작 */
+        const rotateBtn = document.querySelector('.rotate-btn');
+        const slides = document.querySelectorAll('.bg-slide');
+        const totalSlides = slides.length; // 5
+        let index = 0;
+
+        // 
+        rotateBtn.addEventListener('click', function() {
+            slides. forEach(slide => {
+                if (slide.classList.contains('active')) {
+                    slide.classList.add('after-active');
+                } else {
+                    slide.classList.remove('after-active');
+                }
+            }); 
+
+            slides[index].classList.remove('active')
+            index += 1;
+
+            if (index == totalSlides) index = 0;
+
+            slides[index].classList.add('active');
+        });
 
     </script>
 </body>
