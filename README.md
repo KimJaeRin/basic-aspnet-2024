@@ -174,3 +174,18 @@ IoT 개발자과정 ASP.NET 리포지토리
 
 - 웹페이지 클로닝
     -  핀터레스트 타입 웹페이지 만들기(진행중)
+
+## 5일차
+- HTML + CSS + js(jQuery) 응용
+    - 웹페이지 클로닝
+        - 핀터레스트 타입 + 부트스트랩 웹페이지 만들기(완료)
+     
+          https://github.com/hugoMGSung/basic-aspnet-2024/assets/59336331/643a9b13-c062-49a6-a712-aadfc4c7b292
+
+        - Codehal 유튜버 로그인 웹페이지 튜토리얼 따라하기
+
+          <img src="https://raw.githubusercontent.com/hugoMGSung/basic-aspnet-2024/main/images/an0001.png" width="730" alt="Codehal 로그인창 따라하기">
+
+          <!-- ![이미지](https://raw.githubusercontent.com/hugoMGSung/basic-aspnet-2024/main/images/an0001.png) -->
+
+        - Codehal 슬라이더 애니메이션 웹페이지 튜토리얼 따라하기
